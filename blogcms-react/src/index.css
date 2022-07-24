@@ -23,15 +23,15 @@ a {
 a:hover {
   color: #535bf2;
 }
-
+*/
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  overflow: hidden;
+  min-width: 100vw;
   min-height: 100vh;
 }
-
+/*
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -68,4 +68,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
- */
+ 
