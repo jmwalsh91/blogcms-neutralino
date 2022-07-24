@@ -10,9 +10,8 @@ export default function Shell({children}: Props ) {
 
   return (
     <AppShell
-      padding="md"
       navbar={<Navbar width={{ base: 300 }} height={500} p="xs"> <NavItems/> </Navbar>}
-      header={<Header height={60} p="xs">{/* Header content */}</Header>}
+      header={<Header height={60} p="xs">BlogCMS</Header>}
       styles={(theme) => ({
         main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
       })}

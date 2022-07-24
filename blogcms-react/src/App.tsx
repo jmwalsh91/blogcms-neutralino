@@ -2,24 +2,26 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import Shell from './components/Shell'
-import { Header, Paper } from '@mantine/core'
+import { Button, Header, MantineProvider, Paper } from '@mantine/core'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <div className="App">
+    <MantineProvider withGlobalStyles withNormalizeCSS>
    <Shell>
     <Paper style={{
       width: 300,
       height: 300
     }}>
 
-  <Header height={'2rem'}> Hello </Header>
-
+  <Header height={'3rem'}>Hello </Header>
+    <Button>Submit</Button>
+    <Button color="secondary">Secondary</Button>
+    
     </Paper>
    </Shell>
-    </div>
+    </MantineProvider>
   )
 }
 
