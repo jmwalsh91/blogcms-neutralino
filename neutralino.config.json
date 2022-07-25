@@ -12,8 +12,8 @@
   "modes": {
     "window": {
       "title": "blogcms",
-      "width": 800,
-      "height": 500,
+      "width": 1200,
+      "height": 800,
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/blogcms-react/public/cmsicon.png"
