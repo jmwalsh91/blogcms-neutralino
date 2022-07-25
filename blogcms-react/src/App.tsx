@@ -3,12 +3,14 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import Shell from './components/Shell'
 import { Button, Header, MantineProvider, Paper } from '@mantine/core'
+import { theme } from './styles/theme'
 
 function App() {
 
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme
+    }>
    <Shell>
     <Paper style={{
       width: 300,
