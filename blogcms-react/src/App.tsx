@@ -6,6 +6,7 @@ import Shell from "./components/Shell";
 import { Button, Header, MantineProvider, Paper } from "@mantine/core";
 import { theme } from "./styles/theme";
 import Home from "./pages/Home";
+import Compose from "./pages/Compose";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <BrowserRouter>
         <Shell>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home />}/>
+            <Route path="/compose" element={<Compose />}/>
           </Routes>
           <Outlet />
         </Shell>
