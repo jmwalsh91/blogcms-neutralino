@@ -1,4 +1,4 @@
-import { useMantineTheme } from "@mantine/core"
+import { Group, useMantineTheme } from "@mantine/core"
 import { NavLink } from "react-router-dom"
 
 interface navItem {
@@ -13,14 +13,21 @@ export default function NavItems( ) {
 
     const navItems: any = navOptions.map((item: navItem) => {
         return (
-        <li key={item.text} style={{color: theme.white
-        }}><NavLink to={item.link}>{item.text}</NavLink></li>
+       
+
+        <NavLink key={item.text} to={item.link}>{item.text}</NavLink>
+    
         ) 
     })
 
     return (
-        <ul>
+        <nav>
+              <Group position="center" spacing="xl" style={{
+            flexDirection: 'row',
+            marginLeft: '4rem'
+         }}>
             {navItems}
-        </ul>
+            </Group>
+        </nav>
     )
 }

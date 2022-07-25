@@ -33,8 +33,7 @@ function Dashboard({}: Props) {
   return (
     <Paper
       style={{
-        margin: "2rem",
-        width: "80%",
+        margin: "0 auto",
         display: "flex",
         justifySelf: "center",
         justifyContent: "start",
