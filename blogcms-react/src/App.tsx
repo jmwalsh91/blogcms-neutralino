@@ -7,6 +7,7 @@ import { Button, Header, MantineProvider, Paper } from "@mantine/core";
 import { theme } from "./styles/theme";
 import Home from "./pages/Home";
 import Compose from "./pages/Compose";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/compose" element={<Compose />}/>
+            <Route path="/dash" element={<Dashboard />}/>
           </Routes>
           <Outlet />
         </Shell>
