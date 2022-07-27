@@ -1,9 +1,12 @@
 import React from 'react'
 
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
-type Props = {}
+import { Card, Image, Text, Badge, Button, Group, Title } from '@mantine/core';
+type Props = {
+    title: string,
+    description: string
+}
 
-function PostCard({}: Props) {
+function PostCard({title, description}: Props) {
   return (
 <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
@@ -15,7 +18,7 @@ function PostCard({}: Props) {
       </Card.Section>
 
       <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Blog Post</Text>
+        <Text weight={500}> <Title>{title}</Title></Text>
         {/* TODO: placeholder and badge component */}
         <Badge color="pink" variant="light">
           New!
@@ -23,7 +26,7 @@ function PostCard({}: Props) {
       </Group>
 
       <Text size="sm" color="dimmed">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro perspiciatis pariatur, fuga hic ut magni fugit nostrum dolores repellendus quod nihil corporis aliquid! Velit delectus deserunt id placeat error dolorem!
+      {(description.substring(0, 255)) + '...'}
       </Text>
 
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">

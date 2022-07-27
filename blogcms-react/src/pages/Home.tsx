@@ -1,9 +1,11 @@
 import { Button, Header, Paper } from '@mantine/core'
 import React from 'react'
+import { sb } from '../services/sb'
 
 type Props = {}
 
 export default function Home({}: Props) {
+  
   return (
     <Paper style={{
         width: 300,
