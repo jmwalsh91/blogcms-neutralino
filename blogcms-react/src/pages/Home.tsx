@@ -4,6 +4,7 @@ import React from 'react'
 type Props = {}
 
 export default function Home({}: Props) {
+  
   return (
     <Paper style={{
         width: 300,
