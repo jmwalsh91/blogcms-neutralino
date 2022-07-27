@@ -1,5 +1,6 @@
 import { Button, Header, Paper } from '@mantine/core'
 import React from 'react'
+import { sb } from '../services/sb'
 
 type Props = {}
 

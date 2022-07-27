@@ -3,8 +3,8 @@ import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
 //Create Supabase client
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.API_KEY
-const sbClient = createClient(sbUrl, sbKey)
-
+console.log(sbKey)
+const sbClient = createClient(sbUrl, `${sbKey}`)
 //INTERFACES & TYPES
 type Post = {
     id: number,
@@ -28,7 +28,7 @@ export const sb = {
  getAllPosts: async function getAllPosts(): Promise<PostResolved | PostRejected> {
  const {data: post, error} = await sbClient
  .from ('BlogPosts')
- .select()
+ .select('*')
 //TODO: Error Handler
 const result = post? post : error
 console.log(result)
