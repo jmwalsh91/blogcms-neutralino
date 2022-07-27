@@ -6,7 +6,7 @@ const sbKey = import.meta.env.VITE_API_KEY
 console.log(import.meta.env.VITE_TRY)
 const sbClient = createClient(sbUrl, sbKey)
 //INTERFACES & TYPES
-type Post = {
+export type Post = {
     id: number,
     created_at: string,
     posted_at?: string,
@@ -15,8 +15,8 @@ type Post = {
     views?: number
   }
   
-  type PostResolved = any
-  type PostRejected = PostgrestError
+  export type PostResolved = Post[]
+  export type PostRejected = PostgrestError
 
 /** Functions */
 export const sb = {
@@ -25,14 +25,18 @@ export const sb = {
  * TODO: Paginate, accept currentUser as param
  * @returns {Promise<SupabaseClient>}
  */
- getAllPosts: async function getAllPosts(): Promise<PostResolved | PostRejected> {
- const {data: post, error} = await sbClient
+ getAllPosts: async function getAllPosts(): Promise<PostResolved> {
+    console.log('getallposts')
+ const {data: posts, error} = await sbClient
  .from ('BlogPost')
  .select('*')
+
+ console.log(posts)
 //TODO: Error Handler
-const result = post? post : error
-console.log(result)
-return result
+if (error) {
+  console.log(error)
+}
+return posts !== null? posts : []
 },
 /**
  * Get a post by id
