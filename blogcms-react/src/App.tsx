@@ -9,9 +9,12 @@ import Home from "./pages/Home";
 import Compose from "./pages/Compose";
 import Dashboard from "./pages/Dashboard";
 import View from "./pages/View";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./services/queryClient";
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <BrowserRouter>
         <Shell>
@@ -25,6 +28,7 @@ function App() {
         </Shell>
       </BrowserRouter>
     </MantineProvider>
+    </QueryClientProvider>
   );
 }
 
