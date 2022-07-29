@@ -13,6 +13,9 @@ export const queryClient = new QueryClient();
  */
 export const prefetch = {
     prefetchPosts: async function prefetchPosts() {
-        await queryClient.prefetchQuery(['allPosts'], sb.getAllPosts)
+        const posts = await queryClient.prefetchQuery(['allPosts'], sb.getAllPosts)
+        //TODO: TYPING
+        return posts 
+        
     },
 }

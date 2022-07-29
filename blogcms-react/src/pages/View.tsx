@@ -3,12 +3,14 @@ import React, { Suspense, useEffect, useState } from 'react'
 import PostCard from '../components/PostCard'
 import { sb } from '../services/sb'
 import type {Post, PostResolved, PostRejected} from '../services/sb'
+import { useQuery } from '@tanstack/react-query'
 
 
 function View() {
-    const [posts, setPosts] = useState<Post[]>([])
-    
-    useEffect(() => {
+   /*  const [posts, setPosts] = useState<Post[]>([]) */
+    const {data, status} = useQuery(['prefetchPosts'], sb.getAllPosts)
+
+/*     useEffect(() => {
         console.log('hello')
        const retrievedPosts = sb.getAllPosts()
        .then((retrievedPosts) => {
@@ -17,14 +19,14 @@ function View() {
        })
        .catch((error) => (console.log(error)))
     }, [])
-
+ */
    
  
 
   return (
     <Grid>
 
-{posts && posts.map((post) => {
+{data && data.map((post) => {
         return (
             <Grid.Col span={4}>
 
