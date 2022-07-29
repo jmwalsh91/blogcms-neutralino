@@ -59,12 +59,15 @@ export default function RegisterForm(){
 
   async function handleSubmit(values: RegisterValues) {
     console.log(values.email, values.password);
-    sbClient.auth.signIn(values as UserCredentials);
+    const {user, session, error} = await sbClient.auth.signUp({
+      email: values.email,
+      password: values.password
+  } as UserCredentials);
   }
 
   return (
     <>
-      <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
+      <Title order={2} align="center" mt="md" mb={50}>
         Register an account.
       </Title>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>

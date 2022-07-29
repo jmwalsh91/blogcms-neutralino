@@ -60,13 +60,10 @@ export default function LoginForm() {
         sbClient.auth.signIn(values as UserCredentials)
       } 
 
-      function togglePage(event: MouseEvent) {
-        event.preventDefault()
-        setRegisterPage(false)
-      }
+
     return (
         <>
-        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
+        <Title order={2} align="center" mt="md" mb={50}>
         Welcome back to BlogCMS
       </Title>
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
