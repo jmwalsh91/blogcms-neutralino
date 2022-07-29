@@ -9,6 +9,16 @@ import {
     Text,
     Anchor,
   } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { UserCredentials } from '@supabase/supabase-js';
+import { sbClient } from '../services/sb';
+/**
+ * Interfaces and types
+ */
+interface LoginValues {
+    email: string
+    password: string
+}
   
   const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -47,27 +57,44 @@ import {
   
   export function AuthPage() {
     const { classes } = useStyles();
+    const form = useForm({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validate: {
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+          },
+    })
+
+  async function handleSubmit (values: LoginValues) {
+    console.log(values.email, values.password)
+    sbClient.auth.signIn(values as UserCredentials)
+  } 
     return (
       <div className={classes.wrapper}>
+        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Paper className={classes.form} radius={0} p={30}>
           <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
             Welcome to BlogCMS
           </Title>
   
-          <TextInput label="Email address" placeholder="hello@gmail.com" size="md" />
-          <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" />
-          <Checkbox label="Keep me logged in" mt="xl" size="md" />
-          <Button fullWidth mt="xl" size="md">
+          <TextInput label="Email address" placeholder="hello@gmail.com" size="md"
+          required
+          {...form.getInputProps('email')} />
+          <PasswordInput label="Password" placeholder="Your password" mt="md" size="md"
+          required
+          {...form.getInputProps('password')} />
+          <Button type="submit" fullWidth mt="xl" size="md">
             Login
           </Button>
   
           <Text align="center" mt="md">
-            Don&apos;t have an account?{' '}
-            <Anchor<'a'> href="#" weight={700} onClick={(event) => event.preventDefault()}>
-              Register
-            </Anchor>
+            Contact your administrator to request credentials.
+            
           </Text>
         </Paper>
+        </form>
       </div>
     );
   }
