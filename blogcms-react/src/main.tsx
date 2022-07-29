@@ -6,8 +6,8 @@ import AuthRequired from './services/AuthRequired'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AuthRequired>
+   {/*  <AuthRequired> */}
       <App />
-    </AuthRequired>
+ {/*    </AuthRequired> */}
   </React.StrictMode>
 )

@@ -16,22 +16,23 @@ import AuthRequired, { AuthContext } from "./services/AuthRequired";
 
 function App() {
   const authUser = useContext(AuthContext)
-  const prefetchedPosts = prefetch.prefetchPosts()
-  console.log(prefetchedPosts)
+ /*  const prefetchedPosts = prefetch.prefetchPosts() */
+
 
   return (
     <QueryClientProvider client={queryClient}>
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <BrowserRouter>
         <Shell>
-          {authUser.session?
+        {/*   {authUser.session? */}
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/compose" element={<Compose />}/>
             <Route path="/dash" element={<Dashboard />}/>
             <Route path="/view" element={<View />}/>
           </Routes>
-        : <AuthPage /> }
+          <Outlet/>
+      {/*   : <AuthPage /> } */}
         </Shell>
       </BrowserRouter>
     </MantineProvider>

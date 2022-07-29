@@ -22,13 +22,27 @@ interface LoginValues {
 type Props = {
     classes: Record<"form" | "title" | "wrapper" | "logo", string>
 }
+const useStyles = createStyles((theme) => ({
+    title: {
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    },
+  
+    logo: {
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      width: 120,
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  }));
 /**
  * 
  * @function LoginForm
  * Form for login with supabase auth (email strategy)
  * @returns form for user login
  */
-export default function LoginForm({classes}: Props) {
+export default function LoginForm() {
     const form = useForm({
         initialValues: {
             email: '',

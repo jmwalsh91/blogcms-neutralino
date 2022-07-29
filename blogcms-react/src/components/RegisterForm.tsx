@@ -1,6 +1,4 @@
 import {
-    Paper,
-    createStyles,
     TextInput,
     PasswordInput,
     Checkbox,
@@ -8,6 +6,7 @@ import {
     Title,
     Text,
     Anchor,
+    createStyles,
   } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { UserCredentials } from '@supabase/supabase-js';
@@ -22,13 +21,27 @@ interface RegisterValues {
 type Props = {
     classes: Record<"form" | "title" | "wrapper" | "logo", string>
 }
+const useStyles = createStyles((theme) => ({
+    title: {
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    },
+  
+    logo: {
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      width: 120,
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  }));
 /**
  * 
  * @function RegisterForm
  * Form for login with supabase auth (email strategy)
  * @returns form for user login
  */
-export default function RegisterForm({classes}: Props) {
+export default function RegisterForm() {
     const form = useForm({
         initialValues: {
             email: '',
