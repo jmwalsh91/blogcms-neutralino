@@ -4,7 +4,7 @@ import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.VITE_API_KEY
 console.log(import.meta.env.VITE_TRY)
-const sbClient = createClient(sbUrl, sbKey)
+export const sbClient = createClient(sbUrl, sbKey)
 //INTERFACES & TYPES
 export type Post = {
     id: number,
@@ -60,6 +60,21 @@ createNewPost: async function createNewPost(title: string, postText: string) {
         'post_text': postText,
     })
     return newPost ? newPost : error
+},
+auth :  {
+signup: async function signup(data: any) {
+        const response = await sbClient.auth.signUp(data)
+        return response
+    
+}, 
+signin: async function signin(data: any) {
+    const response = await sbClient.auth.signIn(data)
+    return response
+},
+signout: async function signout() {
+    const response = await sbClient.auth.signOut()
+    return response
+}
 }
 }
 /* 
