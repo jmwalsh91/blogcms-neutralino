@@ -28,7 +28,7 @@ type Props = {
  * Form for login with supabase auth (email strategy)
  * @returns form for user login
  */
-function LoginForm({classes}: Props) {
+export default function LoginForm({classes}: Props) {
     const form = useForm({
         initialValues: {
             email: '',

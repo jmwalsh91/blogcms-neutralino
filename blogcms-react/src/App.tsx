@@ -11,7 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import View from "./pages/View";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { prefetch, queryClient } from "./services/queryClient";
-import { AuthPage } from "./components/AuthPage";
+import { AuthPage } from "./pages/AuthPage";
 import AuthRequired, { AuthContext } from "./services/AuthRequired";
 
 function App() {
