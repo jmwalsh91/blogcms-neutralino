@@ -11,6 +11,8 @@ import {
   } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { UserCredentials } from '@supabase/supabase-js';
+import { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 import { sbClient } from '../services/sb';
 /**
  * Types and Interfaces
@@ -20,6 +22,7 @@ interface LoginValues {
     password: string
 }
 type Props = {
+  setRegisterPage: Dispatch<SetStateAction<boolean>>
 }
 const useStyles = createStyles((theme) => ({
     title: {
@@ -56,10 +59,15 @@ export default function LoginForm() {
         console.log(values.email, values.password)
         sbClient.auth.signIn(values as UserCredentials)
       } 
+
+      function togglePage(event: MouseEvent) {
+        event.preventDefault()
+        setRegisterPage(false)
+      }
     return (
         <>
         <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-        Welcome to BlogCMS
+        Welcome back to BlogCMS
       </Title>
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
       <TextInput label="Email address" placeholder="hello@gmail.com" size="md"
@@ -73,10 +81,14 @@ export default function LoginForm() {
       </Button>
     </form>
 
+   
       <Text align="center" mt="md">
-        Contact your administrator to request credentials.
+          Don&apos;t have an account?{' '}
+          <Anchor component={Link} to="/register" weight={700}>
+            Register
+          </Anchor>
+        </Text>
         
-      </Text>
       </>
     )
   }

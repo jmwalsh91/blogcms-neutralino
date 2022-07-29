@@ -12,6 +12,7 @@ import {
 import { useForm } from '@mantine/form';
 import { UserCredentials } from '@supabase/supabase-js';
 import { useState } from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import { sbClient } from '../services/sb';
@@ -45,7 +46,13 @@ import { theme } from '../styles/theme';
             maxWidth: '100%',
           }
         }} radius={0} p={30}>
-          {registerPage === false? <LoginForm /> : <RegisterForm />}
+          <Routes>
+            <Route index element={<LoginForm />}/>
+            <Route path="/login" element={<LoginForm />}/>
+            <Route path="/register" element={<RegisterForm />}/>
+            
+          </Routes>
+          <Outlet/>
         </Paper>
       </div>
     );

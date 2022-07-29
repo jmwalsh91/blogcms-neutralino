@@ -10,6 +10,8 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { UserCredentials } from "@supabase/supabase-js";
+import { Dispatch, MouseEvent, SetStateAction } from "react";
+import { Link } from "react-router-dom";
 import { sbClient } from "../services/sb";
 /**
  * Types and Interfaces
@@ -18,7 +20,11 @@ interface RegisterValues {
   email: string;
   password: string;
 }
-type Props = {};
+
+type Props = {
+  setRegisterPage: Dispatch<SetStateAction<boolean>>
+}
+
 const useStyles = createStyles((theme) => ({
   title: {
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
@@ -39,7 +45,7 @@ const useStyles = createStyles((theme) => ({
  * Form for login with supabase auth (email strategy)
  * @returns form for user login
  */
-export default function RegisterForm() {
+export default function RegisterForm(){
   const classes = useStyles();
   const form = useForm({
     initialValues: {
@@ -50,14 +56,16 @@ export default function RegisterForm() {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
+
   async function handleSubmit(values: RegisterValues) {
     console.log(values.email, values.password);
     sbClient.auth.signIn(values as UserCredentials);
   }
+
   return (
     <>
       <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-        Welcome to BlogCMS
+        Register an account.
       </Title>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <TextInput
@@ -76,13 +84,16 @@ export default function RegisterForm() {
           {...form.getInputProps("password")}
         />
         <Button type="submit" fullWidth mt="xl" size="md">
-          Login
+          Register Account
         </Button>
       </form>
 
       <Text align="center" mt="md">
-        Contact your administrator to request credentials.
-      </Text>
+          Already have an account?{' '}
+          <Anchor component={Link} to="/login" weight={700}>
+            Login
+          </Anchor>
+        </Text>
     </>
   );
 }
