@@ -23,6 +23,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <BrowserRouter>
+   {authUser.session?
         <Shell>
           <Routes>
             <Route path="/" element={<Home />}/>
@@ -31,10 +32,13 @@ function App() {
             <Route path="/dash" element={<Dashboard />}/>
             <Route path="/view" element={<View />}/>
           </Routes>
-      {/*     {authUser.session? */}
           <Outlet/>
-{/*    : <AuthPage /> }  */}
         </Shell>
+  :<Shell>
+    <AuthPage /> 
+  </Shell> 
+}
+
       </BrowserRouter>
     </MantineProvider>
 
