@@ -36,7 +36,7 @@ import { theme } from '../styles/theme';
       }}>
         <Paper style={{
           borderRight: `1px solid ${
-      theme.colors.dark[7]}`,
+      theme.colors.white}`,
           minHeight: 900,
           maxWidth: 450,
           paddingTop: 80,

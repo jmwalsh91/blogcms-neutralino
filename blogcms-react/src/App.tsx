@@ -24,15 +24,16 @@ function App() {
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <BrowserRouter>
         <Shell>
-        {/*   {authUser.session? */}
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/auth" element={<AuthPage />}/>
             <Route path="/compose" element={<Compose />}/>
             <Route path="/dash" element={<Dashboard />}/>
             <Route path="/view" element={<View />}/>
           </Routes>
+      {/*     {authUser.session? */}
           <Outlet/>
-      {/*   : <AuthPage /> } */}
+{/*    : <AuthPage /> }  */}
         </Shell>
       </BrowserRouter>
     </MantineProvider>

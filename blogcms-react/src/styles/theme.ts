@@ -79,6 +79,13 @@ export const theme: MantineTheme | any = {
 
   // White and black colors used for text and backgrounds
   white: "#fff5d9",
-  black: "#000505"
+  black: "#000505",
+  breakpoints: {
+    xs: 500,
+    sm: 800,
+    md: 1000,
+    lg: 1275,
+    xl: 1800,
+  }
 }
 

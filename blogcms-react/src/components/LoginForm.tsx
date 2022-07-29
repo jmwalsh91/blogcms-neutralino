@@ -20,7 +20,6 @@ interface LoginValues {
     password: string
 }
 type Props = {
-    classes: Record<"form" | "title" | "wrapper" | "logo", string>
 }
 const useStyles = createStyles((theme) => ({
     title: {
@@ -43,6 +42,7 @@ const useStyles = createStyles((theme) => ({
  * @returns form for user login
  */
 export default function LoginForm() {
+  const classes = useStyles()
     const form = useForm({
         initialValues: {
             email: '',
