@@ -11,9 +11,9 @@ function TargetsForCompose({bg, title, icon}: Props) {
   return (
     <Stack>
         <Container sx={{
-        height: 250,
-        width: 250,
+        borderRadius: 24,
         backgroundColor: bg,
+       
     }}>
 {icon}
     </Container>

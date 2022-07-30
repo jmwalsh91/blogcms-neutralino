@@ -2,22 +2,30 @@ import { Group } from '@mantine/core'
 import React from 'react'
 import { theme } from '../styles/theme'
 import TargetsForCompose from './targets/TargetsForCompose'
-
+import { IconBrandGithub } from '@tabler/icons'
+import { IconPencil } from '@tabler/icons'
+import { IconNotebook } from '@tabler/icons'
 const targetArr = [
     {
         bg: theme.colors.primary[3], 
         title: 'Blog Post',
-        icon: 'string'
+        icon: <IconPencil width={128} height={128} color="black" style={{
+            textAlign: "center",
+        }}/>
     },
     {
         bg: theme.colors.secondary[3], 
         title: 'Projects',
-        icon: 'string'
+        icon: <IconBrandGithub width={128} height={128} color="black" style={{
+            textAlign: "center",
+        }}/>
     },
     {
         bg: theme.colors.important[3], 
         title: 'Notes',
-        icon: 'notes'
+        icon: <IconNotebook width={128} height={128} color="black" style={{
+            textAlign: "center",
+        }}/>
     },
 ]
 type Props = {}
