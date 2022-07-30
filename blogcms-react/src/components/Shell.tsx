@@ -11,6 +11,7 @@ export default function Shell({children}: Props ) {
 const authUser = useContext(AuthContext)
   return (
     <AppShell
+    fixed={false}
     
   
       header={<Header height="10vh" style={{display: 'flex', flexDirection: 'row'}} p="xs">BlogCMS 
