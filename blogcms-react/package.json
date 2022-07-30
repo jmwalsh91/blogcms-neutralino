@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "^4.2.12",
+    "@mantine/core": "5.0.0",
+    "@mantine/dropzone": "^5.0.0",
     "@mantine/form": "^5.0.0",
-    "@mantine/hooks": "^4.2.12",
+    "@mantine/hooks": "5.0.0",
     "@mantine/next": "^4.2.12",
-    "@mantine/rte": "^4.2.12",
+    "@mantine/rte": "5.0.0",
     "@supabase/supabase-js": "^1.35.4",
     "@tabler/icons": "^1.78.1",
     "@tanstack/react-query": "^4.0.10",

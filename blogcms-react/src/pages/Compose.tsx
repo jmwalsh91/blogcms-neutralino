@@ -2,6 +2,7 @@ import { Button, Container, MultiSelect, TextInput } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
 import React, { useState } from "react";
 import { Routes } from "react-router-dom";
+import { FileUpload } from "../components/FileUpload";
 import { sb } from "../services/sb";
 
 const initialValue =
@@ -52,6 +53,7 @@ function Compose() {
         onChange={(e) => setTitle(e.currentTarget.value)}
         required
       />
+      <FileUpload/>
       <RichTextEditor value={value} sx={{
         minHeight: "50vh",
         maxHeight: "85vh"
