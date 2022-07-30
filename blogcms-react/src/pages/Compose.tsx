@@ -22,7 +22,10 @@ function Compose() {
         onChange={(e) => setTitle(e.currentTarget.value)}
         required
       />
-      <RichTextEditor value={value} onChange={onChange} />
+      <RichTextEditor value={value} sx={{
+        minHeight: "50vh",
+        maxHeight: "85vh"
+      }} onChange={onChange} />
       <Button onClick={() => handleSubmitPost()}></Button>
     </Container>
   );
