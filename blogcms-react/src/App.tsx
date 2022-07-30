@@ -13,6 +13,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { prefetch, queryClient } from "./services/queryClient";
 import { AuthPage } from "./pages/AuthPage";
 import AuthRequired, { AuthContext } from "./services/AuthRequired";
+import ComposeTarget from "./components/ComposeTarget";
 
 function App() {
   const authUser = useContext(AuthContext)
@@ -28,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/auth" element={<AuthPage />}/>
-            <Route path="/compose" element={<Compose />}/>
+            <Route path="/compose" element={<ComposeTarget />}/>
             <Route path="/dash" element={<Dashboard />}/>
             <Route path="/view" element={<View />}/>
           </Routes>

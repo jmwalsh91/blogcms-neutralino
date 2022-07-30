@@ -5,17 +5,17 @@ import TargetsForCompose from './targets/TargetsForCompose'
 
 const targetArr = [
     {
-        bg: theme.colors['primary'][5], 
+        bg: theme.colors.primary[3], 
         title: 'Blog Post',
         icon: 'string'
     },
     {
-        bg: theme.colors['secondary'][5], 
+        bg: theme.colors.secondary[3], 
         title: 'Projects',
         icon: 'string'
     },
     {
-        bg: theme.colors['accents'][5], 
+        bg: theme.colors.important[3], 
         title: 'Notes',
         icon: 'notes'
     },
@@ -28,7 +28,7 @@ type Props = {}
  */
 function ComposeTarget({}: Props) {
   return (
-    <Group>
+    <Group position={'apart'} spacing={12} m={30}>
         {targetArr.map((target) => {
             return (
                 <TargetsForCompose bg={target.bg} title={target.title} icon={target.icon}/>)
