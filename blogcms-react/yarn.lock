@@ -595,6 +595,11 @@
     "@supabase/realtime-js" "^1.7.2"
     "@supabase/storage-js" "^1.7.2"
 
+"@tabler/icons@^1.78.1":
+  version "1.78.1"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.78.1.tgz#7577c1b22c736cec43718e512c89b4452c926e99"
+  integrity sha512-QT/94Hufvzn4PxsEyN9NTh96XmNaGGgMh7sKcBZ2216pE9B+Ala98KpdNwTKKBlEvRvHw9y14zW4qFYzxGOhZw==
+
 "@tanstack/query-core@^4.0.0-beta.1":
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.0.10.tgz#cae6f818006616dc72c95c863592f5f68b47548a"
