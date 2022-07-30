@@ -1,6 +1,7 @@
 import { Button, Container, TextInput } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
 import React, { useState } from "react";
+import { Routes } from "react-router-dom";
 import { sb } from "../services/sb";
 
 const initialValue =
@@ -16,6 +17,8 @@ function Compose() {
 
   return (
     <Container>
+      <Routes>
+      </Routes>
       <TextInput
         placeholder="Title"
         label="Post Title"

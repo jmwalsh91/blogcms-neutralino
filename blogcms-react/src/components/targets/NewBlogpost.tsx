@@ -1,10 +1,11 @@
 import React from 'react'
+import Compose from '../../pages/Compose'
 
 type Props = {}
 
 function NewBlogpost({}: Props) {
   return (
-    <div style={{backgroundColor: 'white', height: 250, width: 250}}/>
+  <Compose/>
   )
 }
 
