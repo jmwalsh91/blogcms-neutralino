@@ -14,6 +14,10 @@ import { prefetch, queryClient } from "./services/queryClient";
 import { AuthPage } from "./pages/AuthPage";
 import AuthRequired, { AuthContext } from "./services/AuthRequired";
 import ComposeTarget from "./components/ComposeTarget";
+import NewBlogpost from "./components/targets/NewBlogpost";
+import NewProject from "./components/targets/NewProject";
+import NewNote from "./components/targets/NewNote";
+import ComposeNew from "./components/targets/ComposeNew";
 
 function App() {
   const authUser = useContext(AuthContext)
@@ -30,6 +34,12 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/auth" element={<AuthPage />}/>
             <Route path="/compose" element={<ComposeTarget />}/>
+            <Route path="compose/new" element={<ComposeNew/>}>
+            <Route path='blogpost/' element={<NewBlogpost/>}/>
+    <Route path='project/' element={<NewProject/>}/>
+    <Route path='note/' element={<NewNote/>}/>
+         
+            </Route>
             <Route path="/dash" element={<Dashboard />}/>
             <Route path="/view" element={<View />}/>
           </Routes>
