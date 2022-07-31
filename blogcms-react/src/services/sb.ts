@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
+import DOMPurify from 'dompurify'
 //Create Supabase client
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.VITE_API_KEY
@@ -53,11 +54,13 @@ getPostById: async function getPostById(id: string): Promise<PostResolved | Post
 },
 /** */
 createNewPost: async function createNewPost(title: string, postText: string) {
+    const sanitizedPost = DOMPurify.sanitize(postText)
+    console.log(sanitizedPost)
     const {data: newPost, error} = await sbClient
     .from ('BlogPost')
     .insert({
         'post_title': title,
-        'post_text': postText,
+        'post_text': sanitizedPost
     })
     return newPost ? newPost : error
 },

@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core'
+import { Grid, ScrollArea } from '@mantine/core'
 import React, { Suspense, useEffect, useState } from 'react'
 import PostCard from '../components/PostCard'
 import { sb } from '../services/sb'
@@ -11,10 +11,8 @@ function View() {
     const {data, status} = useQuery(['prefetchPosts'], sb.getAllPosts)
 
 /*     useEffect(() => {
-        console.log('hello')
        const retrievedPosts = sb.getAllPosts()
        .then((retrievedPosts) => {
-        console.log(retrievedPosts)
         setPosts(retrievedPosts)
        })
        .catch((error) => (console.log(error)))
@@ -24,10 +22,12 @@ function View() {
  
 
   return (
+      <ScrollArea style={{height: "80vh"}}>
     <Grid>
 
 {data && data.map((post) => {
         return (
+
             <Grid.Col span={4}>
 
             <PostCard 
@@ -36,9 +36,10 @@ function View() {
                 />
                 </Grid.Col>
         )
-    })}
+      })}
 
   </Grid>
+      </ScrollArea>
   )
 }
 
