@@ -4,6 +4,7 @@ import { sanitize } from "dompurify";
 import React, { useState } from "react";
 import { Routes } from "react-router-dom";
 import { FileUpload } from "../components/FileUpload";
+import PreviewModalContent from "../components/targets/PreviewModalContent";
 import { sb } from "../services/sb";
 import { sanitizeRichText } from "../utils/rte/handleText";
 
@@ -81,10 +82,7 @@ function Compose() {
         onClose={() => setOpen(false)}
         title="Preview"
       >
-        <h1>
-        {preview?.title}
-        </h1>
-        <Text>{preview?.postText}</Text>
+   <PreviewModalContent title={preview.title} content={preview.postText}/>
       </Modal>
     </Container>
   );
