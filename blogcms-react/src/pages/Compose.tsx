@@ -1,4 +1,4 @@
-import { Button, Container, Modal, MultiSelect, TextInput } from "@mantine/core";
+import { Button, Container, Modal, MultiSelect, TextInput, Text } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
 import { sanitize } from "dompurify";
 import React, { useState } from "react";
@@ -81,7 +81,10 @@ function Compose() {
         onClose={() => setOpen(false)}
         title="Preview"
       >
-        {/* Modal content */}
+        <h1>
+        {preview?.title}
+        </h1>
+        <Text>{preview?.postText}</Text>
       </Modal>
     </Container>
   );
