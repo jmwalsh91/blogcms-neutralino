@@ -1,9 +1,11 @@
-import { Button, Container, MultiSelect, TextInput } from "@mantine/core";
+import { Button, Container, Modal, MultiSelect, TextInput } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
+import { sanitize } from "dompurify";
 import React, { useState } from "react";
 import { Routes } from "react-router-dom";
 import { FileUpload } from "../components/FileUpload";
 import { sb } from "../services/sb";
+import { sanitizeRichText } from "../utils/rte/handleText";
 
 const initialValue =
   "<p>Your initial <b>html value</b> or an empty string to init editor without value</p>";
@@ -38,11 +40,21 @@ const tags = [
 function Compose() {
   const [value, onChange] = useState<string>(initialValue);
   const [title, setTitle] = useState<string>("Title");
+  const [open, setOpen] = useState<boolean>(false)
+  const [preview, setPreview] = useState({title: 'title', postText: initialValue})
+
 
   function handleSubmitPost() {
     sb.createNewPost(title, value);
   }
 
+    function handlePreview(title: string, val: string) {
+      setPreview({
+        title: title,
+        postText: sanitizeRichText(val)})
+      setOpen(true)
+      
+    }
   return (
     <Container>
       <Routes>
@@ -63,7 +75,14 @@ function Compose() {
       label="Tags"
       placeholder="Add tags to blogpost"
     />
-      <Button onClick={() => handleSubmitPost()}></Button>
+      <Button onClick={() => handlePreview(title, value)}>Preview</Button>
+      <Modal
+        opened={open}
+        onClose={() => setOpen(false)}
+        title="Preview"
+      >
+        {/* Modal content */}
+      </Modal>
     </Container>
   );
 }
