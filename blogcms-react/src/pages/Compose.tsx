@@ -123,6 +123,7 @@ function Compose() {
         size="80%"
       >
         <PreviewModalContent form={form} />
+        <Button>Submit</Button>
       </Modal>
     </Container>
   );

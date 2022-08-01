@@ -54,15 +54,23 @@ getPostById: async function getPostById(id: string): Promise<PostResolved | Post
 },
 /** */
 createNewPost: async function createNewPost(title: string, postText: string) {
-    const sanitizedPost = DOMPurify.sanitize(postText)
-    console.log(sanitizedPost)
     const {data: newPost, error} = await sbClient
     .from ('BlogPost')
     .insert({
         'post_title': title,
-        'post_text': sanitizedPost
+        'post_text': postText,
     })
     return newPost ? newPost : error
+},
+files: {
+    upload: async function upload(file: File) {
+        const {data: image, error} = await sbClient
+        .storage
+        .from ('blogcardimg')
+        .upload('public/avatar1.png', file, {
+        cacheControl: '3600',
+        upsert: false
+    })
 },
 auth :  {
 signup: async function signup(data: any) {
