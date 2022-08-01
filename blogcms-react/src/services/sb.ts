@@ -65,12 +65,14 @@ createNewPost: async function createNewPost(title: string, postText: string) {
 files: {
     upload: async function upload(file: File) {
         const {data: image, error} = await sbClient
-        .storage
-        .from ('blogcardimg')
-        .upload('public/avatar1.png', file, {
-        cacheControl: '3600',
-        upsert: false
-    })
+            .storage
+            .from ('blogcardimg')
+            .upload('public/avatar1.png', file, {
+            cacheControl: '3600',
+            upsert: false
+        })
+    console.log(image, error)
+    }
 },
 auth :  {
 signup: async function signup(data: any) {

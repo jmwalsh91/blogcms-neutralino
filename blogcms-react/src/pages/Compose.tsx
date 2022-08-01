@@ -8,6 +8,7 @@ import {
   Grid,
   Textarea,
 } from "@mantine/core";
+import { Dropzone } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";
 import RichTextEditor from "@mantine/rte";
 import { sanitize } from "dompurify";
@@ -69,6 +70,11 @@ function Compose() {
     return content;
   }
 
+  async function handleDrop (files: File[]){
+    const res = await sb.files.upload(files[0])
+    console.log(res)
+  }
+
   function handleSubmitPost() {
     sb.createNewPost(title, value);
   }
@@ -89,7 +95,7 @@ function Compose() {
       />
       <Grid>
         <Grid.Col span={6}>
-          <FileUpload />
+          <Dropzone children={undefined} onDrop={(files) => handleDrop(files)}/>
         </Grid.Col>
         <Grid.Col span={6}>
           <Textarea
@@ -126,7 +132,7 @@ function Compose() {
         <Button>Submit</Button>
       </Modal>
     </Container>
-  );
+  );    
 }
 
 export default Compose;
