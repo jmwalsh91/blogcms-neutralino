@@ -42,7 +42,7 @@ import { theme } from '../styles/theme';
           maxWidth: 450,
           paddingTop: 80,
       
-          [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+          [`@media (maxWidth: ${theme.breakpoints.sm}px)`]: {
             maxWidth: '100%',
           }
         }} radius={0} p={30}>
