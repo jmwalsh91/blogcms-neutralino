@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
 import DOMPurify from 'dompurify'
+import { ResultOptions } from '@tanstack/react-query'
 //Create Supabase client
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.VITE_API_KEY
@@ -15,9 +16,13 @@ export type Post = {
     post_text: string,
     views?: number
   }
-  
+  export type UploadImageResponse = {
+    imgUrl?: string | null,
+    uploadError?: Error | null
+  }
   export type PostResolved = Post[]
   export type PostRejected = PostgrestError
+
 
 /** Functions */
 export const sb = {
@@ -63,9 +68,8 @@ createNewPost: async function createNewPost(title: string, postText: string) {
     return newPost ? newPost : error
 },
 files: {
-    upload: async function upload(file: File, name: string) {
-        console.log(file)
-        console.log(name)
+    upload: async function upload(file: File, name: string): Promise<UploadImageResponse> {
+        let result 
         const {data: image, error} = await sbClient
             .storage
             .from ('public')
@@ -73,7 +77,19 @@ files: {
             cacheControl: '3600',
             upsert: false
         })
-    console.log(image, error)
+
+        if (image) {
+        const {data: imageUrl, error} = await sbClient
+            .storage
+            .from ('public')
+            .getPublicUrl(`${image?.Key}`)
+            result = imageUrl ? imageUrl.publicURL : error
+        }
+        //TODO: Abstract error handling to a function
+        if (!image && error) {
+          result = error
+        }
+        return result as UploadImageResponse
     }
 },
 auth :  {

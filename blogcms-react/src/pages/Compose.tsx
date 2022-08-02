@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { Routes } from "react-router-dom";
 import { FileUpload } from "../components/FileUpload";
 import PreviewModalContent from "../components/targets/PreviewModalContent";
-import { sb } from "../services/sb";
+import { sb, UploadImageResponse } from "../services/sb";
 import { sanitizeRichText } from "../utils/rte/handleText";
 
 export interface FormValues {
@@ -71,8 +71,11 @@ function Compose() {
   }
 
   async function handleDrop (files: File[]){
-    const res = await sb.files.upload(files[0], title)
-    console.log(res)
+    const imgUrl = await sb.files.upload(files[0], title)
+    .then(imgUrl => form.setFieldValue('cardImage', imgUrl as string))
+    .catch((error) => console.log(error))
+    
+    console.log(imgUrl)
   }
 
   function handleSubmitPost() {
