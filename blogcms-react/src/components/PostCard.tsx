@@ -5,9 +5,10 @@ type Props = {
     title: string,
     description: string
     imageUrl?: string
+    isPreview: boolean
 }
 //TODO: ARIA AND ALT
-function PostCard({title, description, imageUrl}: Props) {
+function PostCard({title, description, imageUrl, isPreview}: Props) {
   return (
 <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
@@ -34,7 +35,7 @@ function PostCard({title, description, imageUrl}: Props) {
       {(description.substring(0, 255)) + '...'}
       </Text>
 
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+      <Button variant="light" color="blue" fullWidth mt="md" radius="md" disabled={isPreview? true : false}>
         Action!
       </Button>
     </Card>
