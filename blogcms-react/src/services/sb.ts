@@ -14,6 +14,8 @@ export type Post = {
     posted_at?: string,
     post_title: string,
     post_text: string,
+    tags: string[],
+    card_image: string,
     views?: number
   }
   export type UploadImageResponse = {

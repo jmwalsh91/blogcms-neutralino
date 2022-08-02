@@ -25,7 +25,7 @@ function PreviewModalContent({form}: Props) {
     </Tabs.Panel>
     <Tabs.Panel value="card">
         <Suspense fallback={<Loader variant="bars"/>}>
-        <PostCard title={form.values.title} description={form.values.cardText} imageUrl={img} />
+        <PostCard title={form.values.title} description={form.values.cardText} imageUrl={img} isPreview={true} tags={form.values.tags}/>
         </Suspense>
     </Tabs.Panel>
     <Button color="important">Submit</Button>

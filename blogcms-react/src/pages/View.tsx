@@ -33,6 +33,10 @@ function View() {
             <PostCard 
                 title={post.post_title}
                 description={post.post_text}
+                isPreview={false}
+                imageUrl={post.card_image}
+                tags={post.tags}
+                id={post.id}
                 />
                 </Grid.Col>
         )

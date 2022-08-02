@@ -1,14 +1,18 @@
 import React from 'react'
 
-import { Card, Image, Text, Badge, Button, Group, Title } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Title, Chip } from '@mantine/core';
+import { IconTags } from '@tabler/icons';
+import { Link } from 'react-router-dom';
 type Props = {
     title: string,
     description: string
     imageUrl?: string
     isPreview: boolean
+    tags?: string[]
+    id?: string | number
 }
 //TODO: ARIA AND ALT
-function PostCard({title, description, imageUrl, isPreview}: Props) {
+function PostCard({title, description, imageUrl, isPreview, tags, id}: Props) {
   return (
 <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
@@ -23,21 +27,25 @@ function PostCard({title, description, imageUrl, isPreview}: Props) {
         />
       </Card.Section>
 
-      <Group position="apart" mt="md" mb="xs">
         <Text weight={500}> <Title>{title}</Title></Text>
+      <Group position="right" mt="md" mb="xs">
         {/* TODO: placeholder and badge component */}
-        <Badge color="pink" variant="light">
-          New!
-        </Badge>
+        {
+      tags? tags.map((tag)=> <Badge>{tag}</Badge>)
+    : null}
       </Group>  
+    
 
       <Text size="sm" color="dimmed">
       {(description.substring(0, 255)) + '...'}
       </Text>
 
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md" disabled={isPreview? true : false}>
+      <Link to={`${id}`}> 
+      <Button 
+      variant="light" color="blue" fullWidth mt="md" radius="md" disabled={isPreview? true : false}>
         Action!
       </Button>
+      </Link>
     </Card>
   );
 }
