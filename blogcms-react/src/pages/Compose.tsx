@@ -71,7 +71,7 @@ function Compose() {
   }
 
   async function handleDrop (files: File[]){
-    const res = await sb.files.upload(files[0])
+    const res = await sb.files.upload(files[0], title)
     console.log(res)
   }
 
@@ -95,7 +95,7 @@ function Compose() {
       />
       <Grid>
         <Grid.Col span={6}>
-          <Dropzone children={undefined} onDrop={(files) => handleDrop(files)}/>
+          <FileUpload onDrop={(files) => handleDrop(files)}/>
         </Grid.Col>
         <Grid.Col span={6}>
           <Textarea

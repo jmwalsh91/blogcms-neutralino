@@ -8,7 +8,7 @@ export function FileUpload(props: Partial<DropzoneProps>) {
     <Dropzone
       onDrop={(files) => console.log('accepted files', files)}
       onReject={(files) => console.log('rejected files', files)}
-      maxSize={3 * 1024 ** 2}
+      maxSize={6 * 1024 ** 2}
       accept={IMAGE_MIME_TYPE}
       {...props}
     >
@@ -33,10 +33,10 @@ export function FileUpload(props: Partial<DropzoneProps>) {
 
         <div>
           <Text size="xl" inline>
-            Drag images here or click to select files
+            Drag and drop image here.
           </Text>
           <Text size="sm" color="dimmed" inline mt={7}>
-            Attach as many files as you like, each file should not exceed 5mb
+            This image will be displayed in the card preview.
           </Text>
         </div>
       </Group>
