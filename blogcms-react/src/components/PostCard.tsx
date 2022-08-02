@@ -6,17 +6,19 @@ type Props = {
     description: string
     imageUrl?: string
 }
-
+//TODO: ARIA AND ALT
 function PostCard({title, description, imageUrl}: Props) {
   return (
 <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
+        
         <Image
           src={
             imageUrl? imageUrl : "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
           }
           height={160}
-          alt="Norway"
+          fit={'cover'}
+          alt="descriptive alt text...todo"
         />
       </Card.Section>
 
