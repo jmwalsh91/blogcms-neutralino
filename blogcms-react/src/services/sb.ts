@@ -77,18 +77,21 @@ files: {
             cacheControl: '3600',
             upsert: false
         })
+        console.log(image)
 
         if (image) {
         const {data: imageUrl, error} = await sbClient
             .storage
             .from ('public')
-            .getPublicUrl(`${image?.Key}`)
+            .getPublicUrl(`${file.name}`)
             result = imageUrl ? imageUrl.publicURL : error
+            console.log(result)
         }
         //TODO: Abstract error handling to a function
         if (!image && error) {
           result = error
         }
+        console.log(result)
         return result as UploadImageResponse
     }
 },

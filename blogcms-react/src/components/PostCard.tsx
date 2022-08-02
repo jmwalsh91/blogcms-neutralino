@@ -4,14 +4,17 @@ import { Card, Image, Text, Badge, Button, Group, Title } from '@mantine/core';
 type Props = {
     title: string,
     description: string
+    imageUrl?: string
 }
 
-function PostCard({title, description}: Props) {
+function PostCard({title, description, imageUrl}: Props) {
   return (
 <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
         <Image
-          src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+          src={
+            imageUrl? imageUrl : "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+          }
           height={160}
           alt="Norway"
         />
@@ -23,7 +26,7 @@ function PostCard({title, description}: Props) {
         <Badge color="pink" variant="light">
           New!
         </Badge>
-      </Group>
+      </Group>  
 
       <Text size="sm" color="dimmed">
       {(description.substring(0, 255)) + '...'}

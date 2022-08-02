@@ -1,6 +1,6 @@
-import { Button, Container, Tabs, Title, TypographyStylesProvider, useMantineTheme } from '@mantine/core'
+import { Button, Container, Loader, Tabs, Title, TypographyStylesProvider, useMantineTheme } from '@mantine/core'
 import { UseFormReturnType } from '@mantine/form/lib/types';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { FormValues } from '../../pages/Compose';
 import PostCard from '../PostCard';
 
@@ -10,6 +10,7 @@ type Props = {
 
 function PreviewModalContent({form}: Props) {
     const theme = useMantineTheme()
+    const img = form.values.cardImage
   return (
     <Tabs defaultValue="post">
     <Tabs.List>
@@ -23,7 +24,9 @@ function PreviewModalContent({form}: Props) {
     </TypographyStylesProvider>
     </Tabs.Panel>
     <Tabs.Panel value="card">
-        <PostCard title={form.values.title} description={form.values.cardText}/>
+        <Suspense fallback={<Loader variant="bars"/>}>
+        <PostCard title={form.values.title} description={form.values.cardText} imageUrl={img} />
+        </Suspense>
     </Tabs.Panel>
     <Button color="important">Submit</Button>
     
