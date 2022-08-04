@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Card, Image, Text, Badge, Button, Group, Title, Chip } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Title, Chip, Modal } from '@mantine/core';
 import { IconTags } from '@tabler/icons';
 import { Link } from 'react-router-dom';
+import ViewPost from './view/ViewPost';
 type Props = {
     title: string,
     description: string
@@ -40,12 +41,11 @@ function PostCard({title, description, imageUrl, isPreview, tags, id}: Props) {
       {(description.substring(0, 255)) + '...'}
       </Text>
 
-      <Link to={`${id}`}> 
+    
       <Button 
       variant="light" color="blue" fullWidth mt="md" radius="md" disabled={isPreview? true : false}>
-        Action!
+        View
       </Button>
-      </Link>
     </Card>
   );
 }
