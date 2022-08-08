@@ -1,14 +1,16 @@
-import { Badge, Group, Paper, Text, Title } from '@mantine/core'
+import { Badge, CloseButton, Group, Paper, Text, Title } from '@mantine/core'
 import React from 'react'
 import { Post } from '../../services/sb'
 
 type Props = {
-    post: Post
+    post: Post,
+    setView: React.SetStateAction<number>
 }
-
-function ViewPost({post}: Props) {
+//FIXME: FIX
+function ViewPost({post, setView}: Props) {
   return (
     <Paper shadow='xl'>
+        <CloseButton onClick={setView(0)}/>
         <Title>{post.post_title}</Title>
         
         <Group position="right" mt="md" mb="xs">
