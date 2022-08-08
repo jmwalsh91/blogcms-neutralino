@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
 import DOMPurify from 'dompurify'
 import { ResultOptions } from '@tanstack/react-query'
+import NewProject from '../pages/NewProject'
 //Create Supabase client
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.VITE_API_KEY
@@ -27,6 +28,7 @@ export type Post = {
     mockup: string,
     description: string,
     stack_badges: string[],
+    rich_text?: string,
     views?: number
   }
   export type UploadImageResponse = {
@@ -110,16 +112,18 @@ files: {
 },
 projects: {
     createNewProject: async function createNewProject(newProject: Project) {
-        const {data: newProjectsPost, error} = await sbClient
+        const {data: newProjectData, error} = await sbClient
         .from ('Projects')
         .insert({
        "project_name": newProject.project_name,
        "mockup": newProject.mockup,
-         "card_text": newProject.card_text,
-            "stack_badges": newProject.stack_badges,
-            "description": newProject.description,
+        "card_text": newProject.card_text,
+        "stack_badges": newProject.stack_badges,
+        "description": newProject.description,
+        "card_image": newProject.card_image,
+        "rich_text": newProject.rich_text,
         })
-        return newProject ? newProject : error
+        return newProjectData ? newProjectData : error
     },
 },
 auth :  {
