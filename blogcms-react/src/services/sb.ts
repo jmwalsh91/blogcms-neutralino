@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import type {PostgrestResponse, PostgrestError} from '@supabase/supabase-js'
+import DOMPurify from 'dompurify'
+import { ResultOptions } from '@tanstack/react-query'
+import NewProject from '../pages/NewProject'
 //Create Supabase client
 const sbUrl = 'https://qkdyjypdpruelatqkwbh.supabase.co'
 const sbKey = import.meta.env.VITE_API_KEY
@@ -12,11 +15,29 @@ export type Post = {
     posted_at?: string,
     post_title: string,
     post_text: string,
+    tags: string[],
+    card_image: string,
     views?: number
   }
-  
+  export type Project = {
+    id?: number,
+    created_at?: string,
+    project_name: string,
+    card_image: string,
+    card_text: string,
+    mockup: string,
+    description: string,
+    stack_badges: string[],
+    rich_text?: string,
+    views?: number
+  }
+  export type UploadImageResponse = {
+    imgUrl?: string | null,
+    uploadError?: Error | null
+  }
   export type PostResolved = Post[]
   export type PostRejected = PostgrestError
+
 
 /** Functions */
 export const sb = {
@@ -60,6 +81,50 @@ createNewPost: async function createNewPost(title: string, postText: string) {
         'post_text': postText,
     })
     return newPost ? newPost : error
+},
+files: {
+    upload: async function upload(file: File, name: string): Promise<UploadImageResponse> {
+        let result 
+        const {data: image, error} = await sbClient
+            .storage
+            .from ('public')
+            .upload(`${file.name}`, file, {
+            cacheControl: '3600',
+            upsert: false
+        })
+        console.log(image)
+
+        if (image) {
+        const {data: imageUrl, error} = await sbClient
+            .storage
+            .from ('public')
+            .getPublicUrl(`${file.name}`)
+            result = imageUrl ? imageUrl.publicURL : error
+            console.log(result)
+        }
+        //TODO: Abstract error handling to a function
+        if (!image && error) {
+          result = error
+        }
+        console.log(result)
+        return result as UploadImageResponse
+    }
+},
+projects: {
+    createNewProject: async function createNewProject(newProject: Project) {
+        const {data: newProjectData, error} = await sbClient
+        .from ('Projects')
+        .insert({
+       "project_name": newProject.project_name,
+       "mockup": newProject.mockup,
+        "card_text": newProject.card_text,
+        "stack_badges": newProject.stack_badges,
+        "description": newProject.description,
+        "card_image": newProject.card_image,
+        "rich_text": newProject.rich_text,
+        })
+        return newProjectData ? newProjectData : error
+    },
 },
 auth :  {
 signup: async function signup(data: any) {
