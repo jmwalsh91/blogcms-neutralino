@@ -15,7 +15,7 @@ import { AuthPage } from "./pages/AuthPage";
 import AuthRequired, { AuthContext } from "./services/AuthRequired";
 import ComposeTarget from "./components/ComposeTarget";
 import NewBlogpost from "./components/targets/NewBlogpost";
-import NewProject from "./components/targets/NewProject";
+import NewProject from "./pages/NewProject";
 import NewNote from "./components/targets/NewNote";
 import ComposeNew from "./components/targets/ComposeNew";
 import ViewPost from "./components/view/ViewPost";
