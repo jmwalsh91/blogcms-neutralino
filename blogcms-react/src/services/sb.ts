@@ -18,6 +18,17 @@ export type Post = {
     card_image: string,
     views?: number
   }
+  export type Project = {
+    id?: number,
+    created_at?: string,
+    project_name: string,
+    mockup: string,
+    card_text: string,
+    description: string,
+    stack_badges: string[],
+    card_image: string,
+    views?: number
+  }
   export type UploadImageResponse = {
     imgUrl?: string | null,
     uploadError?: Error | null
@@ -96,6 +107,20 @@ files: {
         console.log(result)
         return result as UploadImageResponse
     }
+},
+projects: {
+    createNewProject: async function createNewProject(newProject: Project) {
+        const {data: newProjectsPost, error} = await sbClient
+        .from ('Projects')
+        .insert({
+       "project_name": newProject.project_name,
+       "mockup": newProject.mockup,
+         "card_text": newProject.card_text,
+            "stack_badges": newProject.stack_badges,
+            "description": newProject.description,
+        })
+        return newProject ? newProject : error
+    },
 },
 auth :  {
 signup: async function signup(data: any) {
