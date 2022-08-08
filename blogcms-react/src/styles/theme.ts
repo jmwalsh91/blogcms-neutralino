@@ -72,12 +72,8 @@ export const theme: MantineTheme | any = {
           ],
     },
     primaryShade: 5,
- //Focus ring setting
   focusRing: 'auto',
-//Element border radius
   defaultRadius:'md',
-
-  // White and black colors used for text and backgrounds
   white: "#fff5d9",
   black: "#000505",
   breakpoints: {

@@ -7,6 +7,8 @@ import {
   Text,
   Grid,
   Textarea,
+  Title,
+  ScrollArea,
 } from "@mantine/core";
 /* import { Dropzone } from "@mantine/dropzone"; */
 import { useForm, UseFormReturnType } from "@mantine/form";
@@ -28,6 +30,7 @@ import { Project, sb, UploadImageResponse } from "../services/sb";
     description: string
     stack_badges: string[]
     mockup: string,
+    rich_text?: string,
   }
 
 const initialValue =
@@ -107,7 +110,11 @@ function NewProject() {
   }
 
   return (
-    <Container>
+      
+      <Container fluid sx={{
+          height: "90vh",
+        }}>
+          <ScrollArea hidden={false}>
       <Grid>
         <Grid.Col span={6}>
           <TextInput
@@ -116,7 +123,7 @@ function NewProject() {
             required
             onChange={(e) => form.setFieldValue("project_name", e.currentTarget.value)}
             {...form.getInputProps("project_name")}
-          />
+            />
         </Grid.Col>
 
         <Grid.Col span={6}>
@@ -125,7 +132,7 @@ function NewProject() {
             label="stack"
             placeholder="What stack?"
             {...form.getInputProps("stack_badges")}
-          />
+            />
         </Grid.Col>
 
         <Grid.Col span={6}>
@@ -138,29 +145,38 @@ function NewProject() {
             label="Card Description"
             minRows={8}
             {...form.getInputProps("card_text")}
-          />
+            />
         </Grid.Col>
       </Grid>
-
+      <Textarea
+            size="xl"
+            label="Project Description"
+            minRows={10}
+            mb="md"
+            {...form.getInputProps("description")}
+            />
+          <Title order={2}>Rich Text</Title>
       <RichTextEditor
         value={value}
+        label="Rich Text"
         sx={{
-          minHeight: "50vh",
-          maxHeight: "85vh",
+            minHeight: "50vh",
+            maxHeight: "85vh",
         }}
         onChange={onChange}
-        {...form.getInputProps("description")}
-      />
+        {...form.getInputProps("rich_text")}
+        />
       <Button onClick={() => handlePreview()}>Preview</Button>
       <Modal
         opened={open}
         onClose={() => setOpen(false)}
         title="Preview"
         size="80%"
-      >
+        >
         <PreviewProjectModal form={form}/>
         <Button onClick={() => handleSubmitPost(form)}>Submit</Button>
       </Modal>
+          </ScrollArea>
     </Container>
   );
 }
