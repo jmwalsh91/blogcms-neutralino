@@ -5,6 +5,7 @@ import { FormValues } from '../../pages/NewProject';
 import { Project } from '../../services/sb';
 import PostCard from '../PostCard';
 import { ProjectCard } from '../ProjectCard';
+import ProjTemplatePreview from './ProjTemplatePreview';
 
 type Props = {
     form: UseFormReturnType<FormValues>
@@ -23,16 +24,15 @@ function PreviewProjectModal({form}: Props) {
         card_image: form.values.card_image,
     } */
   return (
-    <Tabs defaultValue="post">
+    <Tabs defaultValue="project">
     <Tabs.List>
-    <Tabs.Tab value="post">Post</Tabs.Tab>
+    <Tabs.Tab value="project">Project</Tabs.Tab>
     <Tabs.Tab value="card">Card</Tabs.Tab>
     </Tabs.List>
     <Tabs.Panel value="project">
-    <Title color="primary"> {form.values.project_name} </Title>
-    <TypographyStylesProvider>
-    <div dangerouslySetInnerHTML={{__html: form.values.description}}/>
-    </TypographyStylesProvider>
+
+    <ProjTemplatePreview {...project}/>
+
     </Tabs.Panel>
     <Tabs.Panel value="card">
         <Suspense fallback={<Loader variant="bars"/>}>

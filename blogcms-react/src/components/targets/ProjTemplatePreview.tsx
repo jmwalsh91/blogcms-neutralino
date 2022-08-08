@@ -1,27 +1,24 @@
 import {
-    AspectRatio,
     Badge,
-    Center,
     Container,
     Grid,
-    Group,
     Image,
-    SimpleGrid,
     Stack,
     Text,
     Title,
     useMantineTheme,
   } from "@mantine/core";
+import { useLogger } from "@mantine/hooks";
 import { Project } from "../../services/sb";
 
   
-  type Props = {};
 
   function ProjTemplatePreview(project: Project) {
-    const theme = useMantineTheme();
+const theme = useMantineTheme();
+useLogger('ProjTemplatePreivew', [{project, from: 'uselogger'}])    
     return (
       <>
-        <Container fluid mb={"4rem"}>
+        <Container mb={"4rem"}>
           <Title order={1} align="right" mt={"3rem"} mb={"1rem"}>
             {project.project_name}
           </Title>
