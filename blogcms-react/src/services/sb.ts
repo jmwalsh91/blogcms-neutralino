@@ -22,11 +22,11 @@ export type Post = {
     id?: number,
     created_at?: string,
     project_name: string,
-    mockup: string,
+    card_image: string,
     card_text: string,
+    mockup: string,
     description: string,
     stack_badges: string[],
-    card_image: string,
     views?: number
   }
   export type UploadImageResponse = {

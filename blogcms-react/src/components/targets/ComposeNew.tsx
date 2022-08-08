@@ -3,7 +3,7 @@ import React from 'react'
 import { Outlet, Route, Routes } from 'react-router-dom'
 import NewBlogpost from './NewBlogpost'
 import NewNote from './NewNote'
-import NewProject from './NewProject'
+import NewProject from '../../pages/NewProject'
 
 type Props = {}
 

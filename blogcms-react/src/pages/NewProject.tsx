@@ -9,7 +9,7 @@ import {
   Textarea,
 } from "@mantine/core";
 /* import { Dropzone } from "@mantine/dropzone"; */
-import { useForm } from "@mantine/form";
+import { useForm, UseFormReturnType } from "@mantine/form";
 import RichTextEditor from "@mantine/rte";
 /* import { sanitize } from "dompurify"; */
 import React, { useState } from "react";
@@ -22,14 +22,12 @@ import { Project, sb, UploadImageResponse } from "../services/sb";
 
 
   export interface FormValues {
-    project_name: "projectName",
-    card_text: "click to see more",
-    card_image:
-      "https://images.unsplash.com/photo-1621237023000-6a628c285938?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-    description: "projectDescription",
-    stack_badges: [""],
-    mockup:
-      "https://images.unsplash.com/photo-1621237023000-6a628c285938?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+    project_name: string
+    card_text: string
+    card_image: string
+    description: string
+    stack_badges: string[]
+    mockup: string,
   }
 
 const initialValue =
@@ -66,8 +64,10 @@ function NewProject() {
     title: "title",
     postText: initialValue,
   });
+
   const newLocal = '<pre spellcheck="false" class="ql-syntax">';
   const newLocal2 = "</pre>";
+
   const form = useForm<FormValues>({
     initialValues: {
       project_name: "projectName",
@@ -90,14 +90,15 @@ function NewProject() {
   async function handleDrop(files: File[]) {
     const imgUrl = await sb.files
       .upload(files[0], title)
-      .then((imgUrl) => form.setFieldValue("cardImage", imgUrl as string))
+      .then((imgUrl) => form.setFieldValue("card_image", imgUrl as string))
       .catch((error) => console.log(error));
 
     console.log(imgUrl);
   }
 
-  function handleSubmitPost(project: Project) {
-    sb.projects.createNewProject(project);
+  function handleSubmitPost(form: UseFormReturnType<FormValues>) {
+    console.log(form)
+    sb.projects.createNewProject(form as unknown as Project);
   }
 
   async function handlePreview() {
@@ -113,8 +114,8 @@ function NewProject() {
             placeholder="Project Name"
             label="Project Name"
             required
-            onChange={(e) => form.setFieldValue(title, e.currentTarget.value)}
-            {...form.getInputProps("projectName")}
+            onChange={(e) => form.setFieldValue("project_name", e.currentTarget.value)}
+            {...form.getInputProps("project_name")}
           />
         </Grid.Col>
 
@@ -136,7 +137,7 @@ function NewProject() {
             size="xl"
             label="Card Description"
             minRows={8}
-            {...form.getInputProps("cardText")}
+            {...form.getInputProps("card_text")}
           />
         </Grid.Col>
       </Grid>
@@ -148,7 +149,7 @@ function NewProject() {
           maxHeight: "85vh",
         }}
         onChange={onChange}
-        {...form.getInputProps("projectText")}
+        {...form.getInputProps("description")}
       />
       <Button onClick={() => handlePreview()}>Preview</Button>
       <Modal
