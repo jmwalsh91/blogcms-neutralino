@@ -15,6 +15,7 @@ import RichTextEditor from "@mantine/rte";
 import React, { useState } from "react";
 /* import { Routes } from "react-router-dom"; */
 import { FileUpload } from "../components/FileUpload";
+import PreviewProjectModal from "../components/targets/PreviewProjectModal";
 /* import PreviewModalContent from "../components/targets/PreviewModalContent"; */
 import { Project, sb, UploadImageResponse } from "../services/sb";
 /* import { sanitizeRichText } from "../utils/rte/handleText"; */
@@ -156,8 +157,8 @@ function NewProject() {
         title="Preview"
         size="80%"
       >
- {/*        <PreviewModalContent form={form} /> */}
-        <Button>Submit</Button>
+        <PreviewProjectModal form={form}/>
+        <Button onClick={() => handleSubmitPost(form)}>Submit</Button>
       </Modal>
     </Container>
   );
